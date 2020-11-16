@@ -23,6 +23,27 @@ namespace FileDownloader
         public MainWindow()
         {
             InitializeComponent();
+
+            //todo принимаем список файлов и размеров
+            //todo отправляем запрос на файл
+            //todo загружаем файл и обновляем прогресс бар
+            //todo сообщение об окончании загрузки
+            // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.backgroundworker?redirectedfrom=MSDN&view=net-5.0
+        }
+
+        private void UpdateButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DownloadButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void QuitButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

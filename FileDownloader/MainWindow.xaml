@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileDownloader"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TCP File downloader" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        
+        <DataGrid HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="782"/>
+        <StackPanel HorizontalAlignment="Center" Height="68" Margin="0,341,0,0" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal">
+            <Button Content="Обновить список файлов" Width="158" Margin="16,16,32,16" Name="UpdateButton" Click="UpdateButton_OnClick"/>
+            <Button Content="Загрузить выбранный файл" Width="169" Margin="16,16,32,16" Name="DownloadButton" Click="DownloadButton_OnClick"/>
+            <Button Content="Завершить работу" Width="146" Margin="16,16,32,16" Name="QuitButton" Click="QuitButton_OnClick"/>
+        </StackPanel>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="106,331,0,0" VerticalAlignment="Top" Width="565" />
+
     </Grid>
 </Window>
