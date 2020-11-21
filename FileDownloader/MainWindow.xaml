@@ -7,13 +7,17 @@
         mc:Ignorable="d"
         Title="TCP File downloader" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="782"/>
-        <StackPanel HorizontalAlignment="Center" Height="68" Margin="0,341,0,0" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="350*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="782" Grid.ColumnSpan="2"/>
+        <StackPanel HorizontalAlignment="Center" Height="68" Margin="88,341,88,0" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Button Content="Обновить список файлов" Width="158" Margin="16,16,32,16" Name="UpdateButton" Click="UpdateButton_OnClick"/>
             <Button Content="Загрузить выбранный файл" Width="169" Margin="16,16,32,16" Name="DownloadButton" Click="DownloadButton_OnClick"/>
             <Button Content="Завершить работу" Width="146" Margin="16,16,32,16" Name="QuitButton" Click="QuitButton_OnClick"/>
         </StackPanel>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="106,331,0,0" VerticalAlignment="Top" Width="565" />
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="12,331,0,0" VerticalAlignment="Top" Width="565" Grid.Column="1" />
 
     </Grid>
 </Window>

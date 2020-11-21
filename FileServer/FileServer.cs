@@ -117,37 +117,51 @@ namespace FileServer
         {
             while (true)
             {
-                socket = listener.AcceptSocket();
+                if (socket is null || !socket.IsBound || !socket.Connected)
+                {
+                    socket = listener.AcceptSocket();
+                }
 
                 int bufferSize = 1024;
                 var header = new byte[bufferSize];
 
-                socket.Receive(header);
-                var headerStr = Encoding.ASCII.GetString(header);
-
-                if (headerStr.StartsWith("INIT"))
+                try
                 {
-                    CommandHandling(Command.INIT, "Hello");
+                    socket.Receive(header);
+
+                    var headerStr = Encoding.ASCII.GetString(header);
+
+                    if (headerStr.StartsWith("INIT"))
+                    {
+                        CommandHandling(Command.INIT, "Hello");
+                    }
+
+                    else if (headerStr.StartsWith("LIST"))
+                    {
+                        CommandHandling(Command.LIST, "");
+                    }
+
+                    else if (headerStr.StartsWith("QUIT"))
+                    {
+                        CommandHandling(Command.QUIT, "");
+                    }
+
+                    else if (headerStr.StartsWith("FILE"))
+                    {
+                        var tokens = headerStr.Split(' ');
+                        CommandHandling(Command.FILE, tokens[1]);
+                    }
+
+                    else
+                    {
+                        CommandHandling(Command.INCORRECT, headerStr);
+                    }
                 }
 
-                if (headerStr.StartsWith("LIST"))
+                catch
                 {
-                    CommandHandling(Command.LIST, "");
-                }
+                    Console.WriteLine("Соединение принудительно закрыто клиентом");
 
-                if (headerStr.StartsWith("QUIT"))
-                {
-                    CommandHandling(Command.QUIT, "");
-                }
-
-                if (headerStr.StartsWith("FILE"))
-                {
-                    var tokens = headerStr.Split(' ');
-                    CommandHandling(Command.FILE, tokens[1]);
-                }
-                else
-                {
-                    CommandHandling(Command.INCORRECT, headerStr);
                 }
             }
         }
@@ -178,7 +192,6 @@ namespace FileServer
         {
             byte[] msg = Encoding.ASCII.GetBytes($"{str}\r\n");
             int c = socket.Send(msg);
-            ;
         }
 
         public void Quit()

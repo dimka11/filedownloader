@@ -20,10 +20,19 @@ namespace FileDownloader
     /// </summary>
     public partial class MainWindow : Window
     {
+        private FileClient fileDownloader;
+
         public MainWindow()
         {
             InitializeComponent();
 
+            fileDownloader = new FileClient();
+            
+            if (fileDownloader.Run())
+            {
+                fileDownloader.CheckServer(true);
+            }
+           
             //todo принимаем список файлов и размеров
             //todo отправляем запрос на файл
             //todo загружаем файл и обновляем прогресс бар
@@ -33,7 +42,7 @@ namespace FileDownloader
 
         private void UpdateButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            fileDownloader.CheckServer(false);
         }
 
         private void DownloadButton_OnClick(object sender, RoutedEventArgs e)
