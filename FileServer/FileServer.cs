@@ -149,11 +149,7 @@ namespace FileServer
                     else if (headerStr.StartsWith("FILE"))
                     {
                         var str_slice = headerStr.Substring(0, headerStr.IndexOf('\r'));
-                        var tokens = str_slice.Split(' ');
-                        var fn = "";
-                        for (int i = 1; i < tokens.Length; i++) {
-                            fn = fn + tokens[i];
-                        }
+                        var fn = str_slice.Substring(5);
                         CommandHandling(Command.FILE, fn);
                     }
 
@@ -163,9 +159,9 @@ namespace FileServer
                     }
                 }
 
-                catch
+                catch (Exception e)
                 {
-                    Console.WriteLine("Соединение принудительно закрыто клиентом");
+                    Console.WriteLine($"Соединение принудительно закрыто клиентом / произошла ошибка {e.Message}");
 
                 }
             }
