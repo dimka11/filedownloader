@@ -7,6 +7,7 @@ using System.Windows;
 using System.Text.Json;
 using System.Windows.Controls;
 using System.IO;
+using System.Windows.Threading;
 
 namespace FileDownloader
 {
@@ -123,7 +124,7 @@ namespace FileDownloader
                 var expr1 = (1024 * 1024);
                 if (((readed % expr1) == 0))
                 {
-                    pb.Value = pb.Value + 100 / expr;
+                    pb.Dispatcher.Invoke(() => pb.Value = pb.Value + 100 / expr, DispatcherPriority.Background);
                 }
                 if (bytes < 1024)
                 {

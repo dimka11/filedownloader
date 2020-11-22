@@ -28,7 +28,7 @@ namespace FileDownloader
             //todo написать конвертер - DONE
             //todo отправляем запрос на файл - DONE
             //todo загружаем файл - DONE
-            //todo и обновляем прогресс бар - DOING
+            //todo и обновляем прогресс бар - DONE
             //todo сообщение об окончании загрузки - DONE
             // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.backgroundworker?redirectedfrom=MSDN&view=net-5.0
         }
