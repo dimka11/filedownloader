@@ -102,11 +102,12 @@ namespace FileDownloader
             return fileList;
         }
 
-        public void GetFile(string fn, string dir)
+        public void GetFile(string fn, string dir, int fileSize, ProgressBar pb)
         {
             CheckServer(false);
             MessageBox.Show("Началась загрузка файла");
-
+            pb.Value = 0;
+            Int64 readed = 0;
             NetworkStream stream = client.GetStream();
             Byte[] data = Encoding.ASCII.GetBytes($"FILE {fn}\r\n");
             stream.Write(data, 0, data.Length);
@@ -117,7 +118,13 @@ namespace FileDownloader
             {
                 data = new Byte[1024];
                 Int32 bytes = stream.Read(data, 0, data.Length);
-
+                readed = readed + 1024;
+                Int64 expr = fileSize / (1024 * 1024);
+                var expr1 = (1024 * 1024);
+                if (((readed % expr1) == 0))
+                {
+                    pb.Value = pb.Value + 100 / expr;
+                }
                 if (bytes < 1024)
                 {
                     var data1 = new byte[data.Length - 6];
@@ -129,6 +136,7 @@ namespace FileDownloader
             }
             fs.Close();
             MessageBox.Show("Загрузка файла завершена");
+            pb.Value = 100;
         }
     }
 }

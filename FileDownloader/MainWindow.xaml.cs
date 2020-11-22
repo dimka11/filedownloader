@@ -28,8 +28,8 @@ namespace FileDownloader
             //todo написать конвертер - DONE
             //todo отправляем запрос на файл - DONE
             //todo загружаем файл - DONE
-            //todo и обновляем прогресс бар
-            //todo сообщение об окончании загрузки
+            //todo и обновляем прогресс бар - DOING
+            //todo сообщение об окончании загрузки - DONE
             // https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.backgroundworker?redirectedfrom=MSDN&view=net-5.0
         }
 
@@ -95,9 +95,8 @@ namespace FileDownloader
 
             string fn = fi.FileName;
             string dir = AppDomain.CurrentDomain.BaseDirectory;
-
             beforeLoadFile();
-            fileDownloader.GetFile(fn, dir);
+            fileDownloader.GetFile(fn, dir, fi.FileSize, progressBar);
             afterLoadFile();
 
         }

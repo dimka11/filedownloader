@@ -17,7 +17,7 @@
             <Button Content="Загрузить выбранный файл" Width="169" Margin="16,16,32,16" Name="DownloadButton" Click="DownloadButton_OnClick"/>
             <Button Content="Завершить работу" Width="146" Margin="16,16,32,16" Name="QuitButton" Click="QuitButton_OnClick"/>
         </StackPanel>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="12,331,0,0" VerticalAlignment="Top" Width="565" Grid.Column="1" />
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="12,331,0,0" VerticalAlignment="Top" Width="565" Grid.Column="1" Name="progressBar" />
 
     </Grid>
 </Window>
