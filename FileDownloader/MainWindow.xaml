@@ -11,7 +11,7 @@
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="350*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="782" Grid.ColumnSpan="2"/>
+        <DataGrid HorizontalAlignment="Left" Height="327" VerticalAlignment="Top" Width="782" Grid.ColumnSpan="2" Name="dataGrid" ColumnWidth="*"/>
         <StackPanel HorizontalAlignment="Center" Height="68" Margin="88,341,88,0" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Button Content="Обновить список файлов" Width="158" Margin="16,16,32,16" Name="UpdateButton" Click="UpdateButton_OnClick"/>
             <Button Content="Загрузить выбранный файл" Width="169" Margin="16,16,32,16" Name="DownloadButton" Click="DownloadButton_OnClick"/>

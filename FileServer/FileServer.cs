@@ -198,6 +198,7 @@ namespace FileServer
         {
             byte[] msg = Encoding.ASCII.GetBytes("Socket will be closed\r\n");
             socket.Send(msg);
+            socket.Shutdown(SocketShutdown.Both);
             socket.Close();
         }
 
