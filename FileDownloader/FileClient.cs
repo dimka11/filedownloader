@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Text.Json;
 using System.Windows.Controls;
+using System.IO;
 
 namespace FileDownloader
 {
@@ -101,9 +102,33 @@ namespace FileDownloader
             return fileList;
         }
 
-        public void GetFile()
+        public void GetFile(string fn, string dir)
         {
+            CheckServer(false);
+            MessageBox.Show("Началась загрузка файла");
 
+            NetworkStream stream = client.GetStream();
+            Byte[] data = Encoding.ASCII.GetBytes($"FILE {fn}\r\n");
+            stream.Write(data, 0, data.Length);
+
+            FileStream fs = new FileStream($"{dir}\\{fn}", FileMode.OpenOrCreate);
+
+            while (true)
+            {
+                data = new Byte[1024];
+                Int32 bytes = stream.Read(data, 0, data.Length);
+
+                if (bytes < 1024)
+                {
+                    var data1 = new byte[data.Length - 6];
+                    Buffer.BlockCopy(data, 0, data1, 0, data1.Length - 6);
+                    fs.Write(data1, 0, bytes);
+                    break;
+                }
+                    fs.Write(data, 0, bytes);
+            }
+            fs.Close();
+            MessageBox.Show("Загрузка файла завершена");
         }
     }
 }

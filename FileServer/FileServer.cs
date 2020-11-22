@@ -129,7 +129,7 @@ namespace FileServer
                 {
                     socket.Receive(header);
 
-                    var headerStr = Encoding.ASCII.GetString(header);
+                    var headerStr = Encoding.ASCII.GetString(header); //incorrect work
 
                     if (headerStr.StartsWith("INIT"))
                     {
@@ -148,8 +148,13 @@ namespace FileServer
 
                     else if (headerStr.StartsWith("FILE"))
                     {
-                        var tokens = headerStr.Split(' ');
-                        CommandHandling(Command.FILE, tokens[1]);
+                        var str_slice = headerStr.Substring(0, headerStr.IndexOf('\r'));
+                        var tokens = str_slice.Split(' ');
+                        var fn = "";
+                        for (int i = 1; i < tokens.Length; i++) {
+                            fn = fn + tokens[i];
+                        }
+                        CommandHandling(Command.FILE, fn);
                     }
 
                     else
