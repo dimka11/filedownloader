@@ -128,6 +128,11 @@ namespace FileDownloader
                 }
                 if (bytes < 1024)
                 {
+                    if (Encoding.ASCII.GetString(data).IndexOf("<DONE>") == -1)
+                    {
+                        fs.Write(data, 0, bytes);
+                        continue;
+                    }
                     var data1 = new byte[data.Length - 6];
                     Buffer.BlockCopy(data, 0, data1, 0, data1.Length - 6);
                     fs.Write(data1, 0, bytes);
